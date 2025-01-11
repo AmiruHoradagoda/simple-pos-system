@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devstack.pos.controller.LoginFormController">
+   <children>
+      <JFXTextArea layoutX="42.0" layoutY="108.0" prefHeight="66.0" prefWidth="324.0" />
+
+       <JFXTextField fx:id="txtUsername"
+                     layoutX="100.0"
+                     layoutY="150.0"
+                     prefHeight="40.0"
+                     prefWidth="200.0"
+                     promptText="Username" />
+   </children>
+</AnchorPane>
