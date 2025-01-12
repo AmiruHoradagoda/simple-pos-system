@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 public class CustomerFormController {
     public JFXTextField txtEmail;
@@ -21,7 +22,12 @@ public class CustomerFormController {
     public TableColumn colSalary;
     public TableColumn colOperate;
     public TextField txtSearch;
+    public AnchorPane context;
 
     public void btnSaveUpdateOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnBackToHomeOnAction(ActionEvent actionEvent) {
+
     }
 }

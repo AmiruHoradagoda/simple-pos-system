@@ -1,7 +1,8 @@
 package com.devstack.pos.controller;
 
+import com.devstack.pos.dao.DatabaseAccessCode;
+import com.devstack.pos.dto.UserDto;
 import com.devstack.pos.util.PasswordManager;
-import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,17 +26,12 @@ public class LoginFormController {
 
     public void btnSignOnAction(ActionEvent actionEvent) {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/robotikka",
-                    "root", "1234");
-            String sql = "SELECT * FROM user WHERE email=?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, txtEmail.getText());
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                if (PasswordManager.cheakPassword(txtPassword.getText(), resultSet.getString("password"))){
+            UserDto userDto = DatabaseAccessCode.findUser(txtEmail.getText());
+
+            if (userDto != null) {
+                if (PasswordManager.cheakPassword(txtPassword.getText(), userDto.getPassword())) {
                     setUI("DashboardForm");
-                }else{
+                } else {
                     new Alert(Alert.AlertType.WARNING, "check your password and try again !").show();
                 }
             } else {
