@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devstack.pos.controller.SignUpFormController">
+    <children>
+        <JFXTextField labelFloat="true" layoutX="28.0" layoutY="92.0" prefHeight="27.0" prefWidth="286.0" promptText="email">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </JFXTextField>
+        <Text fill="#5e0c0c" layoutX="116.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Robotikka" textAlignment="CENTER" wrappingWidth="116.53668212890625">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Text>
+        <JFXTextField labelFloat="true" layoutX="29.0" layoutY="153.0" prefHeight="27.0" prefWidth="285.0" promptText="password">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </JFXTextField>
+        <JFXButton buttonType="RAISED" layoutX="31.0" layoutY="205.0" prefHeight="42.0" prefWidth="286.0" style="-fx-background-color: #3498db;" text="Register Now" textFill="#fcfcfc">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </JFXButton>
+        <JFXButton buttonType="RAISED" layoutX="35.0" layoutY="294.0" prefHeight="42.0" prefWidth="286.0" style="-fx-background-color: #34495e;" text="Already have an account" textFill="#fcfcfc">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </JFXButton>
+        <Text layoutX="157.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OR" textAlignment="CENTER" wrappingWidth="36.70166015625">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Text>
+    </children>
+</AnchorPane>
