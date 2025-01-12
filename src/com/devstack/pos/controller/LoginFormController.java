@@ -34,7 +34,7 @@ public class LoginFormController {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 if (PasswordManager.cheakPassword(txtPassword.getText(), resultSet.getString("password"))){
-                    System.out.println("Completed");
+                    setUI("DashboardForm");
                 }else{
                     new Alert(Alert.AlertType.WARNING, "check your password and try again !").show();
                 }
@@ -42,7 +42,7 @@ public class LoginFormController {
                 new Alert(Alert.AlertType.WARNING, "User Email not found !").show();
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (ClassNotFoundException | SQLException | IOException e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
