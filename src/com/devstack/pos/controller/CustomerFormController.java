@@ -53,6 +53,19 @@ public class CustomerFormController {
                 setData(newValue);
             }
         });
+        txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+            searchText = newValue;
+
+            try {
+                loadAllCustomers(searchText);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException();
+            }
+
+
+        });
     }
 
     private void setData(CustomerTm newValue) {
@@ -68,7 +81,8 @@ public class CustomerFormController {
         ObservableList<CustomerTm> observableList = FXCollections.observableArrayList();
         int counter = 1;
 
-        for (CustomerDto dto : DatabaseAccessCode.searchCustomers(searchText)) {
+        for (CustomerDto dto : searchText.length() > 0 ? DatabaseAccessCode.searchCustomers(searchText) :
+                DatabaseAccessCode.findAllCustomers()) {
             Button btn = new Button("Delete");
             CustomerTm tm = new CustomerTm(
                     counter, dto.getEmail(), dto.getName(), dto.getContact(), dto.getSalary(), btn
@@ -96,7 +110,7 @@ public class CustomerFormController {
                 } else {
                     new Alert(Alert.AlertType.WARNING, "Tri Again!").show();
                 }
-            }else{
+            } else {
                 if (
                         DatabaseAccessCode.updateCustomer(
                                 txtEmail.getText(),
