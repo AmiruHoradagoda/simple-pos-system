@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Optional;
 
 public class CustomerFormController {
     public JFXTextField txtEmail;
@@ -89,6 +90,27 @@ public class CustomerFormController {
             );
             observableList.add(tm);
             counter++;
+
+            btn.setOnAction((e) -> {
+                try {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure ?", ButtonType.YES, ButtonType.NO);
+                    Optional<ButtonType> selectedButtonType = alert.showAndWait();
+                    if (selectedButtonType.equals(ButtonType.YES)) {
+                        DatabaseAccessCode.deleteCustomer(
+                                dto.getEmail()
+
+                        );
+                        new Alert(Alert.AlertType.CONFIRMATION, "Customer Deleted!").show();
+                        loadAllCustomers(searchText);
+                    } else {
+                        new Alert(Alert.AlertType.WARNING, "Tri Again!").show();
+                    }
+                } catch (ClassNotFoundException | SQLException exception) {
+                    exception.printStackTrace();
+                    new Alert(Alert.AlertType.ERROR,exception.getMessage()).show();
+                }
+
+            });
         }
         tbl.setItems(observableList);
     }
