@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="context" prefHeight="419.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devstack.pos.controller.CustomerFormController">
+<AnchorPane fx:id="context" prefHeight="419.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devstack.pos.controller.CustomerFormController">
    <children>
       <Text fill="#5b0a0a" layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Management" wrappingWidth="163.7366943359375">
          <font>
@@ -28,7 +28,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="474.0" layoutY="15.0" style="-fx-background-color: #16a085;" text="+ New Customer" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="474.0" layoutY="15.0" onAction="#btnNewCustomerOnAction" style="-fx-background-color: #16a085;" text="+ New Customer" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -38,17 +38,17 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXTextField>
-      <JFXTextField fx:id="txtName" layoutX="217.0" layoutY="69.0" promptText="email" text="name">
+      <JFXTextField fx:id="txtName" layoutX="217.0" layoutY="69.0" promptText="name">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXTextField>
-      <JFXTextField fx:id="txtContact" layoutX="417.0" layoutY="69.0" promptText="email" text="contact">
+      <JFXTextField fx:id="txtContact" layoutX="417.0" layoutY="69.0" promptText="contact">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXTextField>
-      <JFXTextField fx:id="txtSalary" layoutX="14.0" layoutY="123.0" promptText="email" text="salary">
+      <JFXTextField fx:id="txtSalary" layoutX="14.0" layoutY="123.0" promptText="salary">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -68,6 +68,6 @@
             <TableColumn fx:id="colOperate" prefWidth="87.99993896484375" text="operate" />
         </columns>
       </TableView>
-      <TextField fx:id="txtSearch" layoutX="12.0" layoutY="169.0" prefHeight="26.0" prefWidth="574.0" text="search here" />
+      <TextField fx:id="txtSearch" layoutX="12.0" layoutY="169.0" prefHeight="26.0" prefWidth="574.0" promptText="search here" />
    </children>
 </AnchorPane>
