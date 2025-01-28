@@ -11,6 +11,7 @@ import com.devstack.pos.dto.UserDto;
 import com.devstack.pos.entity.Customer;
 import com.devstack.pos.entity.Product;
 import com.devstack.pos.entity.User;
+import com.devstack.pos.enums.DaoType;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -20,9 +21,9 @@ import java.util.List;
 
 public class DatabaseAccessCode {
 
-    CustomerDao customerDao = new CustomerDaoImpl();
-    UserDao userDao = new UserDaoImpl();
-    ProductDao productDao = new ProductDaoImpl();
+    CustomerDao customerDao = (CustomerDao) DaoFactory.getInstance().getDao(DaoType.CUSTOMER);
+    UserDao userDao = (UserDao) DaoFactory.getInstance().getDao(DaoType.PRODUCT);
+    ProductDao productDao = (ProductDao) DaoFactory.getInstance().getDao(DaoType.CUSTOMER);
 
 
     public boolean createUser(
