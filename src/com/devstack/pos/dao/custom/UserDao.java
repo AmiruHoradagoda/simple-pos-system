@@ -2,13 +2,14 @@ package com.devstack.pos.dao.custom;
 
 import com.devstack.pos.entity.User;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface UserDao {
 
-    public boolean saveProduct (User customer);
-    public boolean updateProduct (User customer);
-    public boolean deleteProduct (String email);
-    public User findProduct (String email);
-    public List<User> findAllProduct ();
+    public boolean saveUser (User user) throws SQLException, ClassNotFoundException;
+    public boolean updateUser (User user) throws SQLException, ClassNotFoundException;
+    public boolean deleteUser (String email) throws SQLException, ClassNotFoundException;
+    public User findUser (String email) throws SQLException, ClassNotFoundException;
+    public List<User> findAllUser () throws SQLException, ClassNotFoundException;
 }
