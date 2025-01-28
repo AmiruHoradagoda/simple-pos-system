@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
-    
+
     @Override
     public boolean saveUser(User user) throws SQLException, ClassNotFoundException {
         String sql = "INSERT INTO user VALUES ( ?,? )";

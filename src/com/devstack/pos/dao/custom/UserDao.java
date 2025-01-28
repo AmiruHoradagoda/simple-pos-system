@@ -7,9 +7,13 @@ import java.util.List;
 
 public interface UserDao {
 
-    public boolean saveUser (User user) throws SQLException, ClassNotFoundException;
-    public boolean updateUser (User user) throws SQLException, ClassNotFoundException;
-    public boolean deleteUser (String email) throws SQLException, ClassNotFoundException;
-    public User findUser (String email) throws SQLException, ClassNotFoundException;
-    public List<User> findAllUser () throws SQLException, ClassNotFoundException;
+    public boolean saveUser(User user) throws SQLException, ClassNotFoundException;
+
+    public boolean updateUser(User user) throws SQLException, ClassNotFoundException;
+
+    public boolean deleteUser(String email) throws SQLException, ClassNotFoundException;
+
+    public User findUser(String email) throws SQLException, ClassNotFoundException;
+
+    public List<User> findAllUser() throws SQLException, ClassNotFoundException;
 }
