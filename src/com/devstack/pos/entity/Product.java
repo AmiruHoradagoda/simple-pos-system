@@ -1,6 +1,6 @@
 package com.devstack.pos.entity;
 
-public class Product {
+public class Product implements SupperEntity {
     private int code;
     private String description;
 

@@ -1,6 +1,6 @@
 package com.devstack.pos.entity;
 
-public class User {
+public class User implements SupperEntity {
     private String email;
     private String password;
 
