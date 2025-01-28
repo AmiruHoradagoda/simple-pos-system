@@ -1,7 +1,9 @@
 package com.devstack.pos.controller;
 
-import com.devstack.pos.bo.custom.impl.UserBoImpl;
+import com.devstack.pos.bo.BoFactory;
+import com.devstack.pos.bo.custom.UserBo;
 import com.devstack.pos.dto.UserDto;
+import com.devstack.pos.enums.BoType;
 import com.devstack.pos.util.PasswordManager;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -24,9 +26,11 @@ public class LoginFormController {
     @FXML
     private AnchorPane context;
 
+    UserBo userBo = BoFactory.getInstance().getDao(BoType.USER);
+
     public void btnSignOnAction(ActionEvent actionEvent) {
         try {
-            UserDto userDto = new UserBoImpl().findUser(txtEmail.getText());
+            UserDto userDto = userBo.findUser(txtEmail.getText());
 
             if (userDto != null) {
                 if (PasswordManager.cheakPassword(txtPassword.getText(), userDto.getPassword())) {
