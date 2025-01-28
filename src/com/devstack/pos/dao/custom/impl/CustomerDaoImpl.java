@@ -2,7 +2,6 @@ package com.devstack.pos.dao.custom.impl;
 
 import com.devstack.pos.dao.custom.CustomerDao;
 import com.devstack.pos.db.DbConnection;
-import com.devstack.pos.dto.CustomerDto;
 import com.devstack.pos.entity.Customer;
 
 import java.sql.PreparedStatement;
@@ -13,7 +12,7 @@ import java.util.List;
 
 public class CustomerDaoImpl implements CustomerDao {
     @Override
-    public boolean saveCustomer(Customer customer) throws SQLException, ClassNotFoundException {
+    public boolean save(Customer customer) throws SQLException, ClassNotFoundException {
         String sql = "INSERT INTO customer VALUES ( ?,?,?,? )";
         PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
         preparedStatement.setString(1, customer.getEmail());
@@ -24,7 +23,7 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public boolean updateCustomer(Customer customer) throws SQLException, ClassNotFoundException {
+    public boolean update(Customer customer) throws SQLException, ClassNotFoundException {
         String sql = "UPDATE  customer SET name=?,contact=?, salary=? WHERE email=?";
         PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
         preparedStatement.setString(1, customer.getEmail());
@@ -35,7 +34,7 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public boolean deleteCustomer(String email) throws SQLException, ClassNotFoundException {
+    public boolean delete(String email) throws SQLException, ClassNotFoundException {
         String sql = "DELETE FROM customer WHERE email=?";
         PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
         preparedStatement.setString(1, email);
@@ -43,7 +42,7 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public Customer findCustomer(String email) throws SQLException, ClassNotFoundException {
+    public Customer find(String email) throws SQLException, ClassNotFoundException {
         String sql = "SELECT * FROM customer WHERE email=?";
         PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
         preparedStatement.setString(1, email);
@@ -57,7 +56,7 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public List<Customer> findAllCustomer() throws SQLException, ClassNotFoundException {
+    public List<Customer> findAll() throws SQLException, ClassNotFoundException {
         String sql = "SELECT * FROM customer";
         PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
 

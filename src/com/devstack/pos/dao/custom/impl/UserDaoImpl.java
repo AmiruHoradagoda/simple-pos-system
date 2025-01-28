@@ -14,7 +14,7 @@ import java.util.List;
 public class UserDaoImpl implements UserDao {
 
     @Override
-    public boolean saveUser(User user) throws SQLException, ClassNotFoundException {
+    public boolean save(User user) throws SQLException, ClassNotFoundException {
         String sql = "INSERT INTO user VALUES ( ?,? )";
         PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
         preparedStatement.setString(1, user.getEmail());
@@ -24,7 +24,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean updateUser(User user) throws SQLException, ClassNotFoundException {
+    public boolean update(User user) throws SQLException, ClassNotFoundException {
         String sql = "UPDATE user SET password=? WHERE email=?";
         PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
         preparedStatement.setString(1, PasswordManager.encryptPassword(user.getPassword()));
@@ -34,7 +34,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean deleteUser(String email) throws SQLException, ClassNotFoundException {
+    public boolean delete(String email) throws SQLException, ClassNotFoundException {
         String sql = "DELETE FROM user WHERE email=?";
         PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
         preparedStatement.setString(1, email);
@@ -43,7 +43,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User findUser(String email) throws SQLException, ClassNotFoundException {
+    public User find(String email) throws SQLException, ClassNotFoundException {
         String sql = "SELECT * FROM user WHERE email=?";
         PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
         preparedStatement.setString(1, email);
@@ -58,7 +58,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> findAllUser() throws SQLException, ClassNotFoundException {
+    public List<User> findAll() throws SQLException, ClassNotFoundException {
         String sql = "SELECT * FROM user";
         PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
 

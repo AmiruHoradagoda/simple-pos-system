@@ -28,11 +28,11 @@ public class DatabaseAccessCode {
     public boolean createUser(
             String email, String password) throws ClassNotFoundException, SQLException {
 
-        return userDao.saveUser(new User(email, password));
+        return userDao.save(new User(email, password));
     }
 
     public UserDto findUser(String email) throws ClassNotFoundException, SQLException {
-        User user = userDao.findUser(email);
+        User user = userDao.find(email);
         if (user != null) {
             return new UserDto(
                     user.getEmail(),
@@ -51,7 +51,7 @@ public class DatabaseAccessCode {
             double salary
     ) throws ClassNotFoundException, SQLException {
 
-        return customerDao.saveCustomer(new Customer(email, name, contact, salary));
+        return customerDao.save(new Customer(email, name, contact, salary));
     }
 
     public boolean updateCustomer(
@@ -61,13 +61,13 @@ public class DatabaseAccessCode {
             double salary
     ) throws ClassNotFoundException, SQLException {
 
-        return customerDao.updateCustomer(new Customer(email, name, contact, salary));
+        return customerDao.update(new Customer(email, name, contact, salary));
     }
 
     public CustomerDto findCustomer(
             String email
     ) throws ClassNotFoundException, SQLException {
-        Customer customer = customerDao.findCustomer(email);
+        Customer customer = customerDao.find(email);
         if (customer != null) {
             return new CustomerDto(
                     customer.getEmail(), customer.getName(), customer.getContact(), customer.getSalary()
@@ -78,13 +78,13 @@ public class DatabaseAccessCode {
 
     public boolean deleteCustomer(String email) throws ClassNotFoundException, SQLException {
 
-        return customerDao.deleteCustomer(email);
+        return customerDao.delete(email);
     }
 
 
     public List<CustomerDto> findAllCustomers() throws ClassNotFoundException, SQLException {
         List<CustomerDto> customerDtos = new ArrayList<>();
-        for (Customer customer : customerDao.findAllCustomer()) {
+        for (Customer customer : customerDao.findAll()) {
             customerDtos.add(new CustomerDto(
                     customer.getEmail(),
                     customer.getName(),
@@ -124,7 +124,7 @@ public class DatabaseAccessCode {
 
     public boolean saveProduct(int code, String description) throws SQLException, ClassNotFoundException {
 
-        return productDao.saveProduct(
+        return productDao.save(
                 new Product(code, description)
         );
     }
