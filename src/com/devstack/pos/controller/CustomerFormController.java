@@ -1,6 +1,6 @@
 package com.devstack.pos.controller;
 
-import com.devstack.pos.dao.DatabaseAccessCode;
+import com.devstack.pos.bo.custom.impl.CustomerBoImpl;
 import com.devstack.pos.dto.CustomerDto;
 import com.devstack.pos.view.tm.CustomerTm;
 import com.jfoenix.controls.JFXButton;
@@ -82,8 +82,8 @@ public class CustomerFormController {
         ObservableList<CustomerTm> observableList = FXCollections.observableArrayList();
         int counter = 1;
 
-        for (CustomerDto dto : searchText.length() > 0 ? new DatabaseAccessCode().searchCustomers(searchText) :
-                new DatabaseAccessCode().findAllCustomers()) {
+        for (CustomerDto dto : searchText.length() > 0 ? new CustomerBoImpl().searchCustomers(searchText) :
+                new CustomerBoImpl().findAllCustomers()) {
             Button btn = new Button("Delete");
             CustomerTm tm = new CustomerTm(
                     counter, dto.getEmail(), dto.getName(), dto.getContact(), dto.getSalary(), btn
@@ -96,7 +96,7 @@ public class CustomerFormController {
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure ?", ButtonType.YES, ButtonType.NO);
                     Optional<ButtonType> selectedButtonType = alert.showAndWait();
                     if (selectedButtonType.get().equals(ButtonType.YES)) {
-                        new DatabaseAccessCode().deleteCustomer(
+                        new CustomerBoImpl().deleteCustomer(
                                 dto.getEmail()
 
                         );
@@ -107,7 +107,7 @@ public class CustomerFormController {
                     }
                 } catch (ClassNotFoundException | SQLException exception) {
                     exception.printStackTrace();
-                    new Alert(Alert.AlertType.ERROR,exception.getMessage()).show();
+                    new Alert(Alert.AlertType.ERROR, exception.getMessage()).show();
                 }
 
             });
@@ -119,11 +119,13 @@ public class CustomerFormController {
         try {
             if (btnSaveUpdate.getText().equals("Save Customer")) {
                 if (
-                        new DatabaseAccessCode().createCustomer(
-                                txtEmail.getText(),
-                                txtName.getText(),
-                                txtContact.getText(),
-                                Double.parseDouble(txtSalary.getText())
+                        new CustomerBoImpl().saveCustomer(
+                                new CustomerDto(
+                                        txtEmail.getText(),
+                                        txtName.getText(),
+                                        txtContact.getText(),
+                                        Double.parseDouble(txtSalary.getText())
+                                )
                         )
                 ) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Customer Saved!").show();
@@ -134,11 +136,13 @@ public class CustomerFormController {
                 }
             } else {
                 if (
-                        new DatabaseAccessCode().updateCustomer(
-                                txtEmail.getText(),
-                                txtName.getText(),
-                                txtContact.getText(),
-                                Double.parseDouble(txtSalary.getText())
+                        new CustomerBoImpl().updateCustomer(
+                                new CustomerDto(
+                                        txtEmail.getText(),
+                                        txtName.getText(),
+                                        txtContact.getText(),
+                                        Double.parseDouble(txtSalary.getText())
+                                )
                         )
                 ) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Customer Updated!").show();
