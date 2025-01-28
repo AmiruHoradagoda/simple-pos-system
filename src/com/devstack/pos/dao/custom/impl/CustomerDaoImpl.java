@@ -63,7 +63,7 @@ public class CustomerDaoImpl implements CustomerDao {
     public List<Customer> searchCustomers(String searchText) throws ClassNotFoundException, SQLException {
         searchText = "%" + searchText + "%";
         String sql = "SELECT * FROM customer WHERE email LIKE ? || name LIKE ?";
-        ResultSet resultSet = CrudUtil.execute(sql, searchText);
+        ResultSet resultSet = CrudUtil.execute(sql, searchText,searchText);
         List<Customer> customers = new ArrayList<>();
         while (resultSet.next()) {
             customers.add(
