@@ -19,8 +19,8 @@ import java.util.List;
 public class DatabaseAccessCode {
 
     CustomerDao customerDao = DaoFactory.getInstance().getDao(DaoType.CUSTOMER);
-    UserDao userDao = DaoFactory.getInstance().getDao(DaoType.PRODUCT);
-    ProductDao productDao = DaoFactory.getInstance().getDao(DaoType.CUSTOMER);
+    UserDao userDao = DaoFactory.getInstance().getDao(DaoType.USER); 
+    ProductDao productDao = DaoFactory.getInstance().getDao(DaoType.PRODUCT); 
 
 
     public boolean createUser(
