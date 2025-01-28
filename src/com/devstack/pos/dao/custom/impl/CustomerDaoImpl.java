@@ -24,7 +24,7 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public boolean updateCustomer(Customer customer) throws SQLException, ClassNotFoundException{
+    public boolean updateCustomer(Customer customer) throws SQLException, ClassNotFoundException {
         String sql = "UPDATE  customer SET name=?,contact=?, salary=? WHERE email=?";
         PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
         preparedStatement.setString(1, customer.getEmail());
@@ -35,7 +35,7 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public boolean deleteCustomer(String email)throws SQLException, ClassNotFoundException {
+    public boolean deleteCustomer(String email) throws SQLException, ClassNotFoundException {
         String sql = "DELETE FROM customer WHERE email=?";
         PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
         preparedStatement.setString(1, email);
@@ -43,7 +43,7 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public Customer findCustomer(String email) throws SQLException, ClassNotFoundException{
+    public Customer findCustomer(String email) throws SQLException, ClassNotFoundException {
         String sql = "SELECT * FROM customer WHERE email=?";
         PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
         preparedStatement.setString(1, email);
@@ -57,7 +57,7 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public List<Customer> findAllCustomer() throws SQLException, ClassNotFoundException{
+    public List<Customer> findAllCustomer() throws SQLException, ClassNotFoundException {
         String sql = "SELECT * FROM customer";
         PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
 
@@ -79,6 +79,23 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public List<Customer> searchCustomers(String searchText) throws ClassNotFoundException, SQLException {
-        return null;
+        searchText = "%" + searchText + "%";
+        String sql = "SELECT * FROM customer WHERE email LIKE ? || name LIKE ?";
+        PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
+        preparedStatement.setString(1, searchText);
+        preparedStatement.setString(2, searchText);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        List<Customer> customers = new ArrayList<>();
+        while (resultSet.next()) {
+            customers.add(
+                    new Customer(
+                            resultSet.getString(1),
+                            resultSet.getString(2),
+                            resultSet.getString(3),
+                            resultSet.getDouble(4)
+                    )
+            );
+        }
+        return customers;
     }
 }
