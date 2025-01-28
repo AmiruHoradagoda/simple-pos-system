@@ -1,10 +1,9 @@
 package com.devstack.pos.dao.custom.impl;
 
+import com.devstack.pos.dao.CrudUtil;
 import com.devstack.pos.dao.custom.CustomerDao;
-import com.devstack.pos.db.DbConnection;
 import com.devstack.pos.entity.Customer;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,39 +13,25 @@ public class CustomerDaoImpl implements CustomerDao {
     @Override
     public boolean save(Customer customer) throws SQLException, ClassNotFoundException {
         String sql = "INSERT INTO customer VALUES ( ?,?,?,? )";
-        PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
-        preparedStatement.setString(1, customer.getEmail());
-        preparedStatement.setString(2, customer.getName());
-        preparedStatement.setString(3, customer.getContact());
-        preparedStatement.setDouble(4, customer.getSalary());
-        return preparedStatement.executeUpdate() > 0;
+        return CrudUtil.execute(sql, customer.getEmail(), customer.getName(), customer.getContact(), customer.getSalary());
     }
 
     @Override
     public boolean update(Customer customer) throws SQLException, ClassNotFoundException {
         String sql = "UPDATE  customer SET name=?,contact=?, salary=? WHERE email=?";
-        PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
-        preparedStatement.setString(1, customer.getEmail());
-        preparedStatement.setString(2, customer.getName());
-        preparedStatement.setString(3, customer.getContact());
-        preparedStatement.setDouble(4, customer.getSalary());
-        return preparedStatement.executeUpdate() > 0;
+        return CrudUtil.execute(sql, customer.getName(), customer.getContact(), customer.getSalary(), customer.getEmail());
     }
 
     @Override
     public boolean delete(String email) throws SQLException, ClassNotFoundException {
         String sql = "DELETE FROM customer WHERE email=?";
-        PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
-        preparedStatement.setString(1, email);
-        return preparedStatement.executeUpdate() > 0;
+        return CrudUtil.execute(sql, email);
     }
 
     @Override
     public Customer find(String email) throws SQLException, ClassNotFoundException {
         String sql = "SELECT * FROM customer WHERE email=?";
-        PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
-        preparedStatement.setString(1, email);
-        ResultSet resultSet = preparedStatement.executeQuery();
+        ResultSet resultSet = CrudUtil.execute(sql, email);
         if (resultSet.next()) {
             return new Customer(
                     resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getDouble(4)
@@ -58,9 +43,7 @@ public class CustomerDaoImpl implements CustomerDao {
     @Override
     public List<Customer> findAll() throws SQLException, ClassNotFoundException {
         String sql = "SELECT * FROM customer";
-        PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
-
-        ResultSet resultSet = preparedStatement.executeQuery();
+        ResultSet resultSet = CrudUtil.execute(sql);
         List<Customer> customers = new ArrayList<>();
         while (resultSet.next()) {
             customers.add(
@@ -80,10 +63,7 @@ public class CustomerDaoImpl implements CustomerDao {
     public List<Customer> searchCustomers(String searchText) throws ClassNotFoundException, SQLException {
         searchText = "%" + searchText + "%";
         String sql = "SELECT * FROM customer WHERE email LIKE ? || name LIKE ?";
-        PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql);
-        preparedStatement.setString(1, searchText);
-        preparedStatement.setString(2, searchText);
-        ResultSet resultSet = preparedStatement.executeQuery();
+        ResultSet resultSet = CrudUtil.execute(sql, searchText);
         List<Customer> customers = new ArrayList<>();
         while (resultSet.next()) {
             customers.add(
