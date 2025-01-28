@@ -1,13 +1,13 @@
 package com.devstack.pos.bo.custom;
 
+import com.devstack.pos.bo.SupperBo;
 import com.devstack.pos.dto.CustomerDto;
 import com.devstack.pos.dto.ProductDto;
-import com.devstack.pos.dto.UserDto;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public interface ProductBo {
+public interface ProductBo extends SupperBo {
     public boolean saveProduct(ProductDto productDto) throws SQLException, ClassNotFoundException;
 
     public boolean updateProduct(ProductDto productDto);

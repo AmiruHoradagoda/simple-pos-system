@@ -1,11 +1,12 @@
 package com.devstack.pos.bo.custom;
 
+import com.devstack.pos.bo.SupperBo;
 import com.devstack.pos.dto.CustomerDto;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public interface CustomerBo {
+public interface CustomerBo extends SupperBo {
     public boolean saveCustomer(CustomerDto customerDto) throws SQLException, ClassNotFoundException;
 
     public boolean updateCustomer(CustomerDto customerDto) throws SQLException, ClassNotFoundException;
