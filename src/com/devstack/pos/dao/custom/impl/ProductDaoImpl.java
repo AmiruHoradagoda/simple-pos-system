@@ -68,4 +68,9 @@ public class ProductDaoImpl implements ProductDao {
 
         return products;
     }
+
+    @Override
+    public int getLastProductId() throws SQLException, ClassNotFoundException {
+        return 0;
+    }
 }

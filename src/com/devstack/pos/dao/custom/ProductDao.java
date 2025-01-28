@@ -15,4 +15,7 @@ public interface ProductDao {
     public Product findProduct(int code) throws SQLException, ClassNotFoundException;//fix error
 
     public List<Product> findAllProduct() throws SQLException, ClassNotFoundException;
+
+    // --------------------------------------
+    public int getLastProductId() throws SQLException, ClassNotFoundException;
 }
