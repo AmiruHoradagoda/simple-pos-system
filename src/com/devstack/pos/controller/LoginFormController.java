@@ -26,7 +26,7 @@ public class LoginFormController {
 
     public void btnSignOnAction(ActionEvent actionEvent) {
         try {
-            UserDto userDto = DatabaseAccessCode.findUser(txtEmail.getText());
+            UserDto userDto = new DatabaseAccessCode().findUser(txtEmail.getText());
 
             if (userDto != null) {
                 if (PasswordManager.cheakPassword(txtPassword.getText(), userDto.getPassword())) {

@@ -30,7 +30,7 @@ public class SignUpFormController {
     public void btnRegisterNowOnAction(ActionEvent actionEvent) {
         try {
 
-            if (DatabaseAccessCode.createUser(
+            if (new DatabaseAccessCode().createUser(
                     txtEmail.getText(),
                     txtPassword.getText())
             ) {
