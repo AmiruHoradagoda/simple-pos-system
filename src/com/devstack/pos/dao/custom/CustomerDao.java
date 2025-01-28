@@ -1,5 +1,6 @@
 package com.devstack.pos.dao.custom;
 
+import com.devstack.pos.dto.CustomerDto;
 import com.devstack.pos.entity.Customer;
 
 import java.sql.SQLException;
@@ -15,4 +16,8 @@ public interface CustomerDao {
     public Customer findCustomer(String email) throws SQLException, ClassNotFoundException;
 
     public List<Customer> findAllCustomer() throws SQLException, ClassNotFoundException;
+
+
+    //--------------------------------------------
+    public List<Customer> searchCustomers(String searchText) throws ClassNotFoundException, SQLException;
 }

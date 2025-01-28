@@ -2,6 +2,7 @@ package com.devstack.pos.dao.custom.impl;
 
 import com.devstack.pos.dao.custom.CustomerDao;
 import com.devstack.pos.db.DbConnection;
+import com.devstack.pos.dto.CustomerDto;
 import com.devstack.pos.entity.Customer;
 
 import java.sql.PreparedStatement;
@@ -74,5 +75,10 @@ public class CustomerDaoImpl implements CustomerDao {
         }
 
         return customers;
+    }
+
+    @Override
+    public List<Customer> searchCustomers(String searchText) throws ClassNotFoundException, SQLException {
+        return null;
     }
 }
