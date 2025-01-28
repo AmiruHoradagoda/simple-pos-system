@@ -7,7 +7,7 @@ import java.util.List;
 public interface ProductDao {
     public boolean saveProduct (Product customer);
     public boolean updateProduct (Product customer);
-    public boolean deleteProduct (String email);
-    public Product findProduct (String email);
+    public boolean deleteProduct (int code); //fix error
+    public Product findProduct (int code);//fix error
     public List<Product> findAllProduct ();
 }
