@@ -1,5 +1,7 @@
 package com.devstack.pos.dao.custom;
 
+import com.devstack.pos.entity.Customer;
+
 import java.util.List;
 
 public interface CustomerDao {
